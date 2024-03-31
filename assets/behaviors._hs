@@ -1,0 +1,9 @@
+behavior FormCheck
+    on keyup from me
+        set :submit to <[type="submit"]/> in me
+        if <:invalid/> in me is empty
+            remove @disabled from :submit
+        else
+            add @disabled to :submit
+        end
+end
