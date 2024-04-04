@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <form hx-post="/add" hx-target="#list" hx-disabled-elt="input,button" _="install FormCheck">
+    <form hx-post="{{ add_url }}" hx-target="#list" hx-disabled-elt="input,button" _="install FormCheck">
         <input name="name" placeholder="Your name" required minlength="4" class="invalid:border-red-500"/>
         <button type="submit" disabled>Submit</button>
         <div class="htmx-indicator">Loading...</div>

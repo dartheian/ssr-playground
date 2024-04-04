@@ -11,12 +11,16 @@ use tokio::net::TcpListener;
 use tokio::signal;
 use tower_http::services::ServeDir;
 
+const ADD_URL: &str = "/add";
+
 #[derive(Template)]
 #[template(path = "home.html")]
-struct HomeTemplate {}
+struct HomeTemplate {
+    add_url: &'static str,
+}
 
 async fn home() -> HomeTemplate {
-    HomeTemplate {}
+    HomeTemplate { add_url: ADD_URL }
 }
 
 #[derive(Template)]
@@ -56,7 +60,7 @@ async fn main() {
     let app = Router::new()
         .nest_service("/assets", ServeDir::new("assets"))
         .route("/", get(home))
-        .route("/add", post(add))
+        .route(ADD_URL, post(add))
         .with_state(state);
     let listener = TcpListener::bind(&SocketAddr::from(([127, 0, 0, 1], 3000)))
         .await
