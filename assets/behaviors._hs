@@ -4,6 +4,6 @@ behavior FormCheck
         if <:invalid/> in me is empty
             remove @disabled from :submit
         else
-            add @disabled to :submit
+            add @disabled='true' to :submit
         end
 end
