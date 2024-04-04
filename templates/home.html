@@ -7,15 +7,18 @@
     <link rel="icon" href="/assets/favicon.ico" type="image/png" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,container-queries"></script>
     <script src="https://unpkg.com/htmx.org@1.9.11"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.11/dist/ext/response-targets.js"></script>
     <script type="text/hyperscript" src="/assets/behaviors._hs"></script>
     <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
 </head>
 
-<body>
-    <form hx-post="{{ add_url }}" hx-target="#list" hx-disabled-elt="input,button" _="install FormCheck">
-        <input name="name" placeholder="Your name" required minlength="4" class="invalid:border-red-500"/>
+<body hx-ext="response-targets">
+    <form hx-post="{{ add_url }}" hx-target="#list" hx-target-error="#error" hx-disabled-elt="input,button"
+        _="install FormCheck">
+        <input name="name" placeholder="Your name" required minlength="4" class="invalid:border-red-500" />
         <button type="submit" disabled>Submit</button>
         <div class="htmx-indicator">Loading...</div>
+        <div id="error"></div>
     </form>
 
     <h1>List of people</h1>
